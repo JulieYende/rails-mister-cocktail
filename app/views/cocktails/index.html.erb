@@ -1,8 +1,19 @@
 <h1>All the cocktails</h1>
 <p><%@cocktails.each do |cocktail|%>
   <%= link_to cocktail.name, cocktail_path(cocktail) %>
+  <%= cl_image_tag cocktail.photo, height: 300, width: 400, crop: :fill %>
 <% end %>
 </p>
 
 <%= link_to "Create ur cocktail", new_cocktail_path  %>
+<%= cl_image_tag("yosnj6xbfomiluvf4zc3",
+      width: 400, height: 300, crop: :fill) %>
+<%= cl_image_tag("yzeqzpiylkjlxkkt2eph",
+width: 150, height: 150, crop: :thumb, gravity: :face) %>
+
+<div class="card"
+  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path @cocktails, height: 300, width: 400, crop: :fill %>')">
+</div>
+
 
