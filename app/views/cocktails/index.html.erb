@@ -1,19 +1,40 @@
-<h1>All the cocktails</h1>
-<p><%@cocktails.each do |cocktail|%>
-  <%= link_to cocktail.name, cocktail_path(cocktail) %>
-  <%= cl_image_tag cocktail.photo, height: 300, width: 400, crop: :fill %>
-<% end %>
-</p>
-
-<%= link_to "Create ur cocktail", new_cocktail_path  %>
-<%= cl_image_tag("yosnj6xbfomiluvf4zc3",
-      width: 400, height: 300, crop: :fill) %>
-<%= cl_image_tag("yzeqzpiylkjlxkkt2eph",
-width: 150, height: 150, crop: :thumb, gravity: :face) %>
-
-<div class="card"
-  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-         url('<%= cl_image_path @cocktails, height: 300, width: 400, crop: :fill %>')">
+<div class="wrapper-index">
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1 class= "text-center">Cocktails</h1>
+      </div>
+    </div>
+    <div class="row">
+      <% @cocktails.each do |cocktail| %>
+        <div class="col-xs-4">
+          <div class="cocktail-card" data-aos="zoom-out-left" data-aos-duration="800">
+            <% if cocktail.photo.url %>
+              <div class="cocktail-card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),  url('<%= cl_image_path cocktail.photo, height: 300, width: 400, crop: :fill %>')">
+              </div>
+            <% else %>
+              <div class="cocktail-card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),  asset-url('unsplash.jpg')">
+              </div>
+            <% end %>
+            <div class="cocktail-card-content">
+              <div class="cocktail-card-title">
+                <h4><%= cocktail.name %></h4>
+              </div>
+              <div class="flex">
+                <div class="flex">
+                </div>
+                <div class="flex ml-3">
+                </div>
+              </div>
+            </div>
+            <div class="cocktail-card-actions">
+              <%= link_to "Get details", cocktail_path(cocktail), class: "btn btn-sucess btn-details" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 
